@@ -5,7 +5,7 @@ class Tracking {
 	
   public $html = '';
 	
-  public function __constructor ( $trackingNumber ) {
+  public function __construct ( $trackingNumber ) {
     pr('dentro do construcot');
     pr($trackingNumber);
     $this->trackingNumber = $trackingNumber;
