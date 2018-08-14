@@ -39,7 +39,7 @@ class Tracking {
 //       pr( $this->html );
 
       $dom = new DOMDocument();
-      @$dom->loadHTML($html);
+      @$dom->loadHTML($this->html);
       $result = [];
       $i = 0;
 		
