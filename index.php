@@ -1,5 +1,5 @@
 <?php
-  $post = ['objetos' => 'PN752805878BR', 'btnPesq' => 'Buscar'];
+  $post = ['objetos' => 'DY277947771BR', 'btnPesq' => 'Buscar'];
 
   $ch = curl_init('http://www2.correios.com.br/sistemas/rastreamento/resultado.cfm?');
 
