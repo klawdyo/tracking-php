@@ -4,6 +4,9 @@
  * Este arquivo é responsável por pegar as informações da url e realizar a consulta
  */
 
+// Habilita o CORS
+header("Access-Control-Allow-Origin: *");
+
 // Importa o arquivo
 require './Tracking.php';
 
