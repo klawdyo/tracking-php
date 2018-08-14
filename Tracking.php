@@ -1,17 +1,36 @@
 <?php
   header('Content-Type: text/html; charset=utf-8');
 
+  require './TrackingValidation.php';
+
   class Tracking {
     public $trackingNumber = '';
     
     public $html = '';
 
     public $array = [];
+
+    public $error = [];
     
     public function __construct ( $trackingNumber ) {
-      $this->trackingNumber = $trackingNumber;
+      if ( !$this->isValid( $trackingNumber ) ) {
+        $this->error = [
+          'lastStatus' => 'Código de Objeto Inválido',
+          'status' => 'invalidTrackingNumber',
+          'isDelivered' => 0,
+          'events' => []
+        ];
+      } else {
+        $this->trackingNumber = $trackingNumber;
+      }
     }
     
+    /**
+     * Verifica se um número passado é válido
+     */
+    public function isValid ( $trackingNumber ) {
+      return TrackingValidation::isValid( $trackingNumber );
+    }
 
     /**
      * Devolve os resultados como array.
@@ -20,6 +39,11 @@
      * @return {Array} array formatado contendo os resultados da busca
      */
     public function asArray () {
+      // Se existe erro
+      if ( !empty( $this->error ) ) {
+        return $this->error;
+      }
+
       // Faz o parseamento do HTML da página
       $array = $this->request()->parse( $this->html );
 
@@ -116,6 +140,7 @@
      * Faz a requisição para a página dos correios que contém o resultado da página
      */
     private function request () {
+      
       $post = ['objetos' => $this->trackingNumber, 'btnPesq' => 'Buscar'];
       $ch = curl_init('http://www2.correios.com.br/sistemas/rastreamento/resultado.cfm?');
       
