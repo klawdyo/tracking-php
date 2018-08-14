@@ -6,16 +6,16 @@ class Tracking {
   public $html = '';
 	
   public function __construct ( $trackingNumber ) {
-    pr('dentro do construcot');
-    pr($trackingNumber);
+//     pr('dentro do construcot');
+//     pr($trackingNumber);
     $this->trackingNumber = $trackingNumber;
   }
   
   public function request () {
-    pr( $this->trackingNumber );
-    pr('Dentro do request()');
+//     pr( $this->trackingNumber );
+//     pr('Dentro do request()');
     $post = ['objetos' => $this->trackingNumber, 'btnPesq' => 'Buscar'];
-    pr($post);
+//     pr($post);
     $ch = curl_init('http://www2.correios.com.br/sistemas/rastreamento/resultado.cfm?');
     
     curl_setopt_array($ch, [
@@ -30,13 +30,19 @@ class Tracking {
     ]);
     
     $this->html = curl_exec($ch);
-    pr( $this->html );
+//     pr( $this->html );
     return $this;
   }
+	
+	public function parse() {
+    pr('dentro do parse()');
+    pr( $this->html );
+  }
+	
 }
 
 $track = new Tracking( 'DY277947771BR' );
-$track->request();
+$track->request()->parse();
 
 function pr($e){
   echo '<pre>', print_r($e, true), '</pre>';
