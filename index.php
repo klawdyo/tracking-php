@@ -30,25 +30,26 @@ $result = [];
 $i = 0;
 # Iterate over all the <a> tags
 foreach($dom->getElementsByTagName('tr') as $row) {
-  $linha[$i] = parseResult( $row );
+//   $linha[$i] = parseResult( $row );
+  pr($row);
   $i++;
   
 }
 
-pr($linha);
+// pr($linha);
 
 
-function parseResult( $detail ){
-  $result = [];
-  $j = 0;
-  foreach( $row->getElementsByTagName('td') as $cell ) {
-    $result[($j === 0 ? 'detail' : 'description' )] = $cell->textContent;
-    $j++;
-  }
+// function parseResult( $detail ){
+//   $result = [];
+//   $j = 0;
+//   foreach( $row->getElementsByTagName('td') as $cell ) {
+//     $result[($j === 0 ? 'detail' : 'description' )] = $cell->textContent;
+//     $j++;
+//   }
   
-//   pr( explode( "\n", $result['description'] ) );
-//   pr($result);  
-  return $result;
+// //   pr( explode( "\n", $result['description'] ) );
+// //   pr($result);  
+//   return $result;
   
 }
 
