@@ -1,40 +1,57 @@
 # tracking-php
 
 
-Carregando
+# Iniciando a class
 
-```
+```php
 <?php
 require './Tracking.php';
-
-Definindo o objeto e recendo o resultado como JSON
-
 ```
+
+## Definindo o objeto e recendo o resultado como JSON
+
+```php
 $track = new Tracking( 'DY277347772BR' );
 echo $track->asJson();
 
-Resultado como Array
-
 ```
+
+## Resultado como Array
+
+```php
 echo $track->asArray();
-
-Resultado como XML
-
 ```
+
+## Resultado como XML
+
+```php
 echo $track->asXml();
-
-Pesquisando um objeto recebido via POST
-
 ```
+
+## Pesquisando um objeto recebido via POST
+
+```php
 echo (new Tracking( $_POST[ 'tracking_number' ] ))->asJson();
+```
 
-
-Pesquisando um objeto recebido via GET
+## Pesquisando um objeto recebido via GET
 
 ```
+GET seusite.com/tracking?tracking_number=AB123456789BR
+```
+
+```php
 echo (new Tracking( $_GET[ 'tracking_number' ] ))->asJson();
+```
 
+## Validação
 
-O método Tracking faz a validação do número de rastreamento antes da consulta, então, caso ele seja inválido, um erro será retornado imediatamente, evitando a consulta
+### Tracking faz a validação do número de rastreamento antes da consulta, então, caso ele seja inválido, um erro será retornado imediatamente, evitando a consulta
+
+Mas caso você deseje consultar se um objeto é válido:
+
+```php
+Tracking::isValid('AB123456789BR');
+```
 
 
