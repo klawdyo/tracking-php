@@ -28,12 +28,14 @@ $dom = new DOMDocument();
 
 # Iterate over all the <a> tags
 foreach($dom->getElementsByTagName('tr') as $row) {
+  echo 'nova linha: 
+  ';
         # Show the <a href>
 //         echo $link->getAttribute('href');
 //     pr($row);
   foreach( $row->getElementsByTagName('td') as $cell ) {
-    pr('linha');
-    pr($cell->textContent);
+    echo 'celula  ' . $cell->textContent . '
+    ';
   }
   
   
