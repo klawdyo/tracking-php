@@ -11,13 +11,18 @@
 require './Tracking.php';
 ```
 
-## Definindo o objeto e recebendo o resultado como JSON
+## Definindo o objeto passando o número de registro no construtor da classe
 
 ```php
 $track = new Tracking( 'DY277347772BR' );
-echo $track->asJson();
-
 ```
+
+## Resultado como JSON
+
+```php
+echo $track->asJson();
+```
+
 
 ## Resultado como Array
 
@@ -34,7 +39,8 @@ echo $track->asXml();
 ## Pesquisando um objeto recebido via POST
 
 ```php
-echo (new Tracking( $_POST[ 'tracking_number' ] ))->asJson();
+$track = new Tracking( $_POST[ 'tracking_number' ] );
+echo $track->asJson();
 ```
 
 ## Pesquisando um objeto recebido via GET
@@ -44,7 +50,8 @@ GET seusite.com/tracking?tracking_number=AB123456789BR
 ```
 
 ```php
-echo (new Tracking( $_GET[ 'tracking_number' ] ))->asJson();
+$track = new Tracking( $_GET[ 'tracking_number' ] );
+echo $track->asJson();
 ```
 
 ## Validação
