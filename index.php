@@ -30,7 +30,11 @@ $dom = new DOMDocument();
 foreach($dom->getElementsByTagName('tr') as $row) {
         # Show the <a href>
 //         echo $link->getAttribute('href');
-    pr($row);
+//     pr($row);
+  foreach( $row->getElementsByTagName('td') as $cell ) {
+    pr('linha');
+    pr($cell->textContent);
+  }
   
   
 }
