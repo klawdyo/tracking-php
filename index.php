@@ -27,10 +27,10 @@ $dom = new DOMDocument();
 @$dom->loadHTML($html);
 
 # Iterate over all the <a> tags
-foreach($dom->getElementsByTagName('table') as $table) {
+foreach($dom->getElementsByTagName('tr') as $row) {
         # Show the <a href>
 //         echo $link->getAttribute('href');
-    pr($table);
+    pr($row);
   
   
 }
