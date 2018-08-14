@@ -46,8 +46,8 @@ function parseResult( $detail ){
     $j++;
   }
   
-  pr( explode( "\n", $result['description'] ) );
-  pr($result);  
+//   pr( explode( "\n", $result['description'] ) );
+//   pr($result);  
   return $result;
   
 }
