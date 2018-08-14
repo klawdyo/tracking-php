@@ -30,18 +30,23 @@ $result = [];
 $i = 0;
 # Iterate over all the <a> tags
 foreach($dom->getElementsByTagName('tr') as $row) {
-  //echo 'nova linha:   ';
-  
-        # Show the <a href>
-//         echo $link->getAttribute('href');
-//     pr($row);
-  $j=0;
-  foreach( $row->getElementsByTagName('td') as $cell ) {
-    $result[$i][($j === 0 ? 'detail' : 'description' )] = $cell->textContent;
-    $j++;
-    //echo 'celula  ' . $cell->textContent . '';
-  }
+  $linha[$i] = parseResult( $row );
   $i++;
+  
+}
+
+
+function parseResult( $detail ){
+  $result = [];
+  $j = 0;
+  foreach( $row->getElementsByTagName('td') as $cell ) {
+    $result[($j === 0 ? 'detail' : 'description' )] = $cell->textContent;
+    $j++;
+  }
+  
+  pr( explode( "\n", $result['description'] ) );
+  
+  return $result;
   
 }
 
