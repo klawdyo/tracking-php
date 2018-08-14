@@ -13,7 +13,7 @@
     public $error = [];
     
     public function __construct ( $trackingNumber ) {
-      if ( !$this->isValid( $trackingNumber ) ) {
+      if ( !Tracking::isValid( $trackingNumber ) ) {
         $this->error = [
           'lastStatus' => 'Código de Objeto Inválido',
           'status' => 'invalidTrackingNumber',
@@ -28,7 +28,7 @@
     /**
      * Verifica se um número passado é válido
      */
-    public function isValid ( $trackingNumber ) {
+    public static function isValid ( $trackingNumber ) {
       return TrackingValidation::isValid( $trackingNumber );
     }
 
