@@ -36,7 +36,7 @@ class Tracking {
 	
   public function parse() {
       pr('dentro do parse()');
-      pr( $this->html );
+//       pr( $this->html );
 
       $dom = new DOMDocument();
       @$dom->loadHTML($html);
@@ -52,7 +52,8 @@ class Tracking {
         }//foreach
 
         $i++;
-     }//foreach    
+     }//foreach   
+	  pr($result);
   } // track		
 } // class
 
