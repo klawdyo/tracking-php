@@ -34,12 +34,27 @@ class Tracking {
     return $this;
   }
 	
-	public function parse() {
-    pr('dentro do parse()');
-    pr( $this->html );
-  }
-	
-}
+  public function parse() {
+      pr('dentro do parse()');
+      pr( $this->html );
+
+      $dom = new DOMDocument();
+      @$dom->loadHTML($html);
+      $result = [];
+      $i = 0;
+
+      foreach($dom->getElementsByTagName('tr') as $row) {
+
+        $j = 0;
+        foreach( $row->getElementsByTagName('td') as $cell ) {
+          $result[$i][($j === 0 ? 'detail' : 'description' )] = $cell->textContent;
+          $j++;
+        }//foreach
+
+        $i++;
+     }//foreach    
+  } // track		
+} // class
 
 $track = new Tracking( 'DY277947771BR' );
 $track->request()->parse();
