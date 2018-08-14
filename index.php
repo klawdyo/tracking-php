@@ -42,11 +42,14 @@ class Tracking {
       @$dom->loadHTML($html);
       $result = [];
       $i = 0;
-
+		
       foreach($dom->getElementsByTagName('tr') as $row) {
+	      pr($row);
+	      pr('linha'.$i);
 
         $j = 0;
         foreach( $row->getElementsByTagName('td') as $cell ) {
+		pr('celular' . $j);
           $result[$i][($j === 0 ? 'detail' : 'description' )] = $cell->textContent;
           $j++;
         }//foreach
