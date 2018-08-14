@@ -6,11 +6,16 @@ class Tracking {
   public $html = '';
 	
   public function __constructor ( $trackingNumber ) {
+    pr('dentro do construcot');
+    pr($trackingNumber);
     $this->trackingNumber = $trackingNumber;
   }
   
   public function request () {
+    pr( $this->trackingNumber );
+    pr('Dentro do request()');
     $post = ['objetos' => $this->trackingNumber, 'btnPesq' => 'Buscar'];
+    pr($post);
     $ch = curl_init('http://www2.correios.com.br/sistemas/rastreamento/resultado.cfm?');
     
     curl_setopt_array($ch, [
