@@ -27,8 +27,14 @@ $dom = new DOMDocument();
 @$dom->loadHTML($html);
 
 # Iterate over all the <a> tags
-foreach($dom->getElementsByTagName('a') as $link) {
+foreach($dom->getElementsByTagName('table') as $table) {
         # Show the <a href>
-        echo $link->getAttribute('href');
-        echo "<br />";
+//         echo $link->getAttribute('href');
+    pr($table);
+  
+  
+}
+
+function pr($e){
+echo '<pre>', print_r($e, true), '</pre>';
 }
