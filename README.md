@@ -9,7 +9,7 @@
 require './Tracking.php';
 ```
 
-## Definindo o objeto e recendo o resultado como JSON
+## Definindo o objeto e recebendo o resultado como JSON
 
 ```php
 $track = new Tracking( 'DY277347772BR' );
