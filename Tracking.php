@@ -4,15 +4,32 @@
   require './TrackingValidation.php';
 
   class Tracking {
-    public $trackingNumber = '';
+    /**
+     * @var $trackingNumber
+     */
+    private $trackingNumber = '';
     
-    public $html = '';
+    /**
+     * @var $html
+     */
+    private $html = '';
 
-    public $array = [];
+    /**
+     * @var $array
+     */
+    private $array = [];
 
-    public $error = [];
+    /**
+     * @var $error
+     */
+    private $error = [];
     
+    /**
+     * Método construtor
+     * @param {String} Número de rastreamento
+     */
     public function __construct ( $trackingNumber ) {
+      // Se não for válido
       if ( !Tracking::isValid( $trackingNumber ) ) {
         $this->error = [
           'lastStatus' => 'Código de Objeto Inválido',
@@ -27,6 +44,8 @@
     
     /**
      * Verifica se um número passado é válido
+     * 
+     * @param {String} Número de rastreamento
      */
     public static function isValid ( $trackingNumber ) {
       return TrackingValidation::isValid( $trackingNumber );
@@ -138,6 +157,8 @@
 
     /**
      * Faz a requisição para a página dos correios que contém o resultado da página
+     * 
+     * @return {Object} O objeto da classe para encadeamento
      */
     private function request () {
       
@@ -162,6 +183,9 @@
     /**
      * Recebe o html da página e devolve só as linhas da tabela que realmente interessam
      * para a continuidade da requisição
+     * 
+     * @param {String} $html O html da página para tratamento
+     * @return {Array} Array com as células da tabela agrupadas com as linhas
      */
     private function parse( $html ) {
       $dom = new DOMDocument();
@@ -180,6 +204,9 @@
     /**
      * Avalia o comentário para retornar um possível agrupamento de mensagem
      * O retornos possívels são: delivered, returned, forwarded, outForDelivery, deliveryError, notFound
+     * 
+     * @param {String} $phrase A mensagem da linha na tabela dos correios
+     * @return {String} Retorna uma das mensagens: delivered, returned, forwarded, outForDelivery, deliveryError, notFound
      */
     private function status( $phrase ) {
       $rgx = '/((?<delivered>entregue)|(?<returned>devolvido)|(?<forwarded>encaminhado)|(?<outForDelivery>saiu para entrega)|(?<deliveryError>A entrega não pode ser efetuada))/im';
