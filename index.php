@@ -14,4 +14,21 @@
       CURLOPT_PROTOCOLS => CURLPROTO_HTTP | CURLPROTO_HTTPS
   ]);
 
-  echo $output = curl_exec($ch);
+  $html = curl_exec($ch);
+
+//  preg_match();
+
+# Create a DOM parser object
+$dom = new DOMDocument();
+
+# Parse the HTML from Google.
+# The @ before the method call suppresses any warnings that
+# loadHTML might throw because of invalid HTML in the page.
+@$dom->loadHTML($html);
+
+# Iterate over all the <a> tags
+foreach($dom->getElementsByTagName('a') as $link) {
+        # Show the <a href>
+        echo $link->getAttribute('href');
+        echo "<br />";
+}
