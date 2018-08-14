@@ -35,6 +35,8 @@ foreach($dom->getElementsByTagName('tr') as $row) {
   
 }
 
+pr($linha);
+
 
 function parseResult( $detail ){
   $result = [];
@@ -45,12 +47,12 @@ function parseResult( $detail ){
   }
   
   pr( explode( "\n", $result['description'] ) );
-  
+  pr($result);  
   return $result;
   
 }
 
-pr($result);
+
 
 function pr($e){
 echo '<pre>', print_r($e, true), '</pre>';
