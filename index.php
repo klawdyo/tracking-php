@@ -26,20 +26,26 @@ $dom = new DOMDocument();
 # loadHTML might throw because of invalid HTML in the page.
 @$dom->loadHTML($html);
 
+$result = [];
+$i = 0;
 # Iterate over all the <a> tags
 foreach($dom->getElementsByTagName('tr') as $row) {
-  echo 'nova linha: 
-  ';
+  //echo 'nova linha:   ';
+  
         # Show the <a href>
 //         echo $link->getAttribute('href');
 //     pr($row);
+  $j=0;
   foreach( $row->getElementsByTagName('td') as $cell ) {
-    echo 'celula  ' . $cell->textContent . '
-    ';
+    $result[$i][($j === 0 ? 'detail' : 'description' )];
+    $j++;
+    //echo 'celula  ' . $cell->textContent . '';
   }
-  
+  $i++;
   
 }
+
+pr($result);
 
 function pr($e){
 echo '<pre>', print_r($e, true), '</pre>';
