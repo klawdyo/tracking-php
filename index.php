@@ -35,7 +35,7 @@ class Tracking {
   }
 	
   public function parse() {
-      pr('dentro do parse()');
+      //pr('dentro do parse()');
 //       pr( $this->html );
 
       $dom = new DOMDocument();
@@ -45,11 +45,11 @@ class Tracking {
 		
       foreach($dom->getElementsByTagName('tr') as $row) {
 	      //pr($row);
-	      pr('linha'.$i);
+	      //pr('linha'.$i);
 
         $j = 0;
         foreach( $row->getElementsByTagName('td') as $cell ) {
-	  pr('celula:' . $cell->textContent);
+	  //pr('celula:' . $cell->textContent);
           $result[$i][($j === 0 ? 'detail' : 'description' )] = $cell->textContent;
           $j++;
         } //foreach
