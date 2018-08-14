@@ -37,7 +37,7 @@ foreach($dom->getElementsByTagName('tr') as $row) {
 //     pr($row);
   $j=0;
   foreach( $row->getElementsByTagName('td') as $cell ) {
-    $result[$i][($j === 0 ? 'detail' : 'description' )];
+    $result[$i][($j === 0 ? 'detail' : 'description' )] = $cell->textContent;
     $j++;
     //echo 'celula  ' . $cell->textContent . '';
   }
