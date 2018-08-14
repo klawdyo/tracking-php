@@ -44,19 +44,20 @@ class Tracking {
       $i = 0;
 		
       foreach($dom->getElementsByTagName('tr') as $row) {
-	      pr($row);
+	      //pr($row);
 	      pr('linha'.$i);
 
         $j = 0;
         foreach( $row->getElementsByTagName('td') as $cell ) {
-		pr('celular' . $j);
+	  pr('celula:' . $cell->textContent);
           $result[$i][($j === 0 ? 'detail' : 'description' )] = $cell->textContent;
           $j++;
-        }//foreach
+        } //foreach
 
         $i++;
      }//foreach   
-	  pr($result);
+	  
+     pr($result);
   } // track		
 } // class
 
