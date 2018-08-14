@@ -87,14 +87,15 @@
 
         // Segunda expressão regular regularizar a descrição
         $rgx2 = '/(\s{2,}|\n})/im';
-        $descrition = preg_replace( $rgx2, ' ', $row['description'] );
+        $description = preg_replace( $rgx2, ' ', $row['description'] );
 
         // Alimenta o array
         $result[] = [
           'date' => $datimeDetails[ 'date' ],
           'time' => $datimeDetails[ 'time' ],
           'unit' => trim( $datimeDetails['city' ] ),
-          'observation' => trim( $descrition ),
+          'observation' => trim( $description ),
+          'status' => $this->status( $description ),
         ];
       }
       
