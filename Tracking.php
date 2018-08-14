@@ -95,19 +95,16 @@
           'time' => $datimeDetails[ 'time' ],
           'unit' => trim( $datimeDetails['city' ] ),
           'observation' => trim( $description ),
-          'status' => $this->status( $description ),
+          'status' => Tracking::status( $description ),
         ];
       }
       
       // Exibe o último histórico
       $last = count( $result ) > 0 ? $result[ 0 ][ 'observation' ] : 'Objeto não movimentado';
-
-      // Pega o status do último evento
-      $status = $this->status( $result[ 0 ][ 'observation' ] );
-
+      
       // Retorna
       return [
-        'status' => $status,
+        'status' => $result[ 0 ][ 'status' ],
         'lastStatus' => $last,
         'lastUpdate' => "{$result[ 0 ][ 'date' ]} {$result[ 0 ][ 'time' ]}",
         'isDelivered' => $this->isDelivered( $result ),
@@ -149,8 +146,11 @@
      * @return {Boolean} Retorna true or false, dependendo se o pacote foi ou não entregue
      */
     private function isDelivered ( $result ) {
-      if ( isset( $result[0] ) ) {
-        return in_array( $result[0]['observation'], [ 'delivered', 'returned' ] );
+      foreach( $result as $item ) {
+        // pr($item);
+        if ( in_array( $item['status'], [ 'delivered', 'returned' ] ) ) {
+          return true;
+        }
       }
 
       return false;
@@ -207,10 +207,10 @@
      * O retornos possívels são: delivered, returned, forwarded, outForDelivery, deliveryError, notFound
      * 
      * @param {String} $phrase A mensagem da linha na tabela dos correios
-     * @return {String} Retorna uma das mensagens: delivered, returned, forwarded, outForDelivery, deliveryError, notFound
+     * @return {String} Retorna uma das mensagens: posted, delivered, returned, forwarded, outForDelivery, deliveryError, notFound
      */
-    private function status( $phrase ) {
-      $rgx = '/((?<delivered>entregue)|(?<returned>devolvido)|(?<forwarded>encaminhado)|(?<outForDelivery>saiu para entrega)|(?<deliveryError>A entrega não pode ser efetuada))/im';
+    public static function status( $phrase ) {
+      $rgx = '/((?<delivered>entregue)|(?<returned>devolvido)|(?<posted>Objeto postado)|(?<forwarded>encaminhado)|(?<outForDelivery>saiu para entrega)|(?<deliveryError>A entrega não pode ser efetuada))/im';
     
       preg_match( $rgx, $phrase, $matches );
     
