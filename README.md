@@ -7,7 +7,6 @@
 ## Importando o o arquivo
 
 ```php
-<?php
 require './Tracking.php';
 ```
 
