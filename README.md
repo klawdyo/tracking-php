@@ -1,3 +1,8 @@
+# Deprecated
+
+## A class deixou de funcionar após a última mudança no site dos Correios. 
+
+
 # tracking-php
 
 ## Classe de rastreamento de objetos registrados dos Correios com cURL, sem o uso do webservice.
